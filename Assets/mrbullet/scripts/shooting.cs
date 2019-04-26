@@ -8,6 +8,8 @@ public class shooting : MonoBehaviour
     public GameObject firePos;
     public GameObject point;
 
+    public Animator an;
+
     AudioSource audioData;
 
     private void Start()
@@ -30,6 +32,7 @@ public class shooting : MonoBehaviour
         if (Input.GetButtonUp("Fire1"))
         {
             //fire
+            an.SetTrigger("fire");
             audioData.Play(0);
             point.SetActive(false);
             GameObject bull = Instantiate(bullet, firePos.transform.position, Quaternion.identity);
