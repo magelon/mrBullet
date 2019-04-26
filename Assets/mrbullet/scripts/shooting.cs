@@ -16,6 +16,7 @@ public class shooting : MonoBehaviour
     {
         point.SetActive(false);
         audioData = GetComponent<AudioSource>();
+        poolManager.instance.CreatePool(bullet, 30);
     }
 
     void Update()
@@ -35,7 +36,7 @@ public class shooting : MonoBehaviour
             an.SetTrigger("fire");
             audioData.Play(0);
             point.SetActive(false);
-            GameObject bull = Instantiate(bullet, firePos.transform.position, Quaternion.identity);
+            GameObject bull = poolManager.instance.ReuseObject(bullet, firePos.transform.position, Quaternion.identity);//Instantiate(bullet, firePos.transform.position, Quaternion.identity);
             bull.GetComponent<Rigidbody2D>().AddForce((pz-firePos.transform.position).normalized * 100f);
         }
     }
