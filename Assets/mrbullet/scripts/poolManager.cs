@@ -5,10 +5,13 @@ using System;
 
 public class poolManager : MonoBehaviour
 {
+    //number of pool of poolDictionary //put all game objects into a queue
     Dictionary<int, Queue<GameObject>> poolDictionary =
         new Dictionary<int, Queue<GameObject>>();
 
+    //a private constructor prevents the class from being instantiated
     static poolManager _instance;
+    //singleton poolmanager instance
     public  static poolManager instance
     {
         get
@@ -25,6 +28,7 @@ public class poolManager : MonoBehaviour
     {
         if (prefab != null)
         {
+            //instanceid is integer
             int poolKey = prefab.GetInstanceID();
             if (!poolDictionary.ContainsKey(poolKey))
             {
@@ -55,9 +59,11 @@ public class poolManager : MonoBehaviour
             GameObject objectToReuse = poolDictionary[poolKey].Dequeue();
             poolDictionary[poolKey].Enqueue(objectToReuse);
             objectToReuse.SetActive(false);
+
             objectToReuse.SetActive(true);
             objectToReuse.transform.position = position;
             objectToReuse.transform.rotation = rotation;
+
             return objectToReuse;
         }
         else
