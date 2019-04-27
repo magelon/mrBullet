@@ -8,11 +8,17 @@ public class bullet : MonoBehaviour
     private Rigidbody2D rb;
     AudioSource audioData;
 
+    TrailRenderer trail;
+    float trailTime;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         audioData = GetComponent<AudioSource>();
+        trail = GetComponent<TrailRenderer>();
+        trailTime = trail.time;
     }
+
 
     // save velocity for use after a collision
     private void FixedUpdate()

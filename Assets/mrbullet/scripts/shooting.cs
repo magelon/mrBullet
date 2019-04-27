@@ -16,7 +16,7 @@ public class shooting : MonoBehaviour
     {
         point.SetActive(false);
         audioData = GetComponent<AudioSource>();
-        poolManager.instance.CreatePool(bullet, 30);
+        poolManager.instance.CreatePool(bullet, 3);
     }
 
     void Update()
